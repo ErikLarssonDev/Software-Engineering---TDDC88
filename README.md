@@ -19,6 +19,10 @@ Running mock API server for authentication
 2. Start the server on different terminal `npm run auth` 
 3. The terminal with the server logs responses and statuses
 
+
+# API Documentation
+https://tddc88-2022.gitlab-pages.liu.se/api/api-documentation
+
 # Technical specification
 Node.js: https://nodejs.org/en/download/
 React.js: https://reactjs.org/
