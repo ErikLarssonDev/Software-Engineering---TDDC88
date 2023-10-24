@@ -1,0 +1,13 @@
+pages:
+  image: node:latest
+  stage: deploy
+  script:
+  - npm install -g redoc-cli
+  # public/index.html is the output
+  # openapi.yaml is the input
+  - redoc-cli bundle -o public/index.html openapi.yaml
+  artifacts:
+    paths:
+    - public
+  only:
+  - api_v2

@@ -1,0 +1,1088 @@
+openapi: 3.0.0
+info:
+  title: TDDC88 2022 API
+  description: "This API specifies how to make data requests and their responses between frontend and backend.<br><br>All requests (except Authentication requests) must use the Authorization header, with token received in Authentication request and by following syntax: <q>Authorization: Bearer &lt;token&gt;</q>"
+  version: 2.1.0
+servers:
+  - url: "https://tddc88-c${frontend}${backend}.kubernetes-public.it.liu.se/api/v2"
+    description: Internal path to backend API
+tags: 
+  - name: Authentication
+  - name: Users
+  - name: Articles
+  - name: Storages
+  - name: Compartments
+  - name: Transactions
+
+security:
+  - bearerAuth: []
+
+paths:
+  /loginWithCredentials:
+    post: 
+      summary: Login with credentials
+      operationId: loginWithCredentials
+      tags: 
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credentials'
+      responses:
+        '200':
+          description: Token to used to further authenticate requests
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  user: 
+                    $ref: '#/components/schemas/User'
+                  token: 
+                    type: string
+                    example: Token
+                  
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified credentials was not found.
+        '5XX':
+          description: Unexpected error.
+
+  /loginWithBarcode:
+    post: 
+      summary: Login with barcode
+      operationId: loginWithBarcode
+      tags: 
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Barcode'
+      responses:
+        '200':
+          description: Token to used to further authenticate requests
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  user: 
+                    $ref: '#/components/schemas/User'
+                  token: 
+                    type: string
+                    example: Token
+                  
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified credentials was not found.
+        '5XX':
+          description: Unexpected error.
+  
+  /loginWithNFC:
+    post: 
+      summary: Login with NFC
+      operationId: loginWithNFC
+      tags: 
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NFC'
+      responses:
+        '200':
+          description: Token to used to further authenticate requests
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  user: 
+                    $ref: '#/components/schemas/User'
+                  token: 
+                    type: string
+                    example: Token
+                  
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified credentials was not found.
+        '5XX':
+          description: Unexpected error.
+    
+  /users:
+    get:
+      summary: Get users
+      tags: 
+        - Users
+      operationId: getUsers
+      responses:
+        '200':    # status code
+          description: Returns JSON array of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+    post:
+      summary: Create user
+      tags: 
+        - Users
+      operationId: createUser
+      requestBody:
+        required: true
+        description: A JSON object that contains the user name and age.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          description: Bad request. User ID must be an integer and larger than 0.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+
+  /users/{userId}:
+    get:
+      summary: Get user with ID
+      tags: 
+        - Users
+      operationId: getUser
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: ID of the user to get
+      responses:
+        '200':
+          description: A JSON object with user information
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request. 
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.
+    
+    put: 
+      summary: Edit user with ID
+      tags: 
+        -  Users
+      operationId: editUser
+      parameters: 
+        - in: path
+          schema:
+            type: string
+          name: userId
+          required: true
+          description: ID of the user to edit
+      requestBody: 
+        content: 
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/User"
+      responses: 
+        '200': 
+          description: Updated user successfully.
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/User"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.
+    delete:
+      summary: Delete user
+      tags: 
+        -  Users
+      operationId: deleteUser
+      parameters: 
+        - in: path
+          schema:
+            type: string
+          name: userId
+          required: true
+          description: ID of the user to edit
+      responses: 
+        '204':
+          description: User was deleted
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.
+
+  /articles:
+    get:
+      summary: Get articles
+      tags: 
+        - Articles
+      operationId: getArticles
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':
+          description: A JSON array of article names
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Article'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+    post:
+      summary: Create article
+      tags: 
+        - Articles
+      operationId: createNewArticle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '201':
+          description: A JSON article object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+        '400':
+          description: Bad request. 
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+
+  /articles/qr/{qrCode}:
+    get:
+      summary: Get article by QR
+      tags: 
+        - Articles
+      operationId: getArticleByQRcode
+      parameters: 
+        - in: path
+          name: qrCode
+          schema:
+            type: string
+          required: true
+          description: QR code of the compartment containing the article to get
+      responses:
+        '200':
+          description: A JSON article object
+          content:
+            application/json:
+              schema:   
+                $ref: '#/components/schemas/Article'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A compartment with the specified QR code was not found.
+        '5XX':
+          description: Unexpected error.
+
+  /articles/name/{name}:
+    get:
+      summary: Get article by name
+      tags: 
+        - Articles
+      operationId: getArticleByName
+      parameters: 
+        - in: path
+          name: name
+          schema:
+            type: string
+          required: true
+          description: Name of the article to get
+      responses:
+        '200':
+          description: A JSON article object
+          content:
+            application/json:
+              schema:   
+                $ref: '#/components/schemas/Article'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: An article with the specified name was not found.
+        '5XX':
+          description: Unexpected error.
+
+  /articles/lio/{lioNr}:
+    get:
+      summary: Get article by LIO
+      tags: 
+        - Articles
+      operationId: getArticleByLIO
+      parameters: 
+        - in: path
+          name: lioNr
+          schema:
+            type: string
+          required: true
+          description: LIO nr of the article to get
+      responses:
+        '200':
+          description: A JSON article object
+          content:
+            application/json:
+              schema:   
+                $ref: '#/components/schemas/Article'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: An article with the specified LIO nr was not found.
+        '5XX':
+          description: Unexpected error.
+    put: 
+      summary: Edit article by LIO
+      tags: 
+        -  Articles
+      operationId: editArticleByLIO
+      parameters: 
+        - in: path
+          name: lioNr
+          schema:
+            type: string
+          required: true
+          description: LIO nr of the article to edit
+      requestBody: 
+        content: 
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/Article"
+        
+      responses: 
+        '200': 
+          description: Updated article successfully.
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Article"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: An article with the specified LIO nr was not found.
+        '5XX':
+          description: Unexpected error.
+    delete:
+      summary: Delete article by LIO
+      tags: 
+        -  Articles
+      operationId: deleteArticlebyLIO
+      parameters: 
+        - in: path
+          name: lioNr
+          schema:
+            type: string
+          required: true
+          description: LIO nr of the article to delete
+      responses: 
+        '204':
+          description: Article was deleted
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: An article with the specified LIO nr was not found.
+        '5XX':
+          description: Unexpected error.
+  
+  /storages:
+    get:
+      summary: Get storages
+      tags: 
+        - Storages
+      operationId: getStorages
+      responses:
+        '200':
+          description: A JSON array of storages
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: "#/components/schemas/Storage"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+    post:
+      summary: Create storage
+      tags: 
+        - Storages
+      operationId: createNewStorage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Storage'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Storage"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+
+  /storages/{id}:
+    get:
+      summary: Get storage by ID
+      tags: 
+        - Storages
+      operationId: getStorageByID
+      parameters: 
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the storage to get.
+      responses:
+        '200':
+          description: A JSON storage object.
+          content:
+            application/json:
+              schema:   
+                $ref: '#/components/schemas/Storage'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A storage with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.        
+        
+    put: 
+      summary: Edit storage by ID
+      tags: 
+        -  Storages
+      operationId: editStorage
+      parameters: 
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the storage to edit.
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/Storage"
+      responses: 
+        '200': 
+          description: Updated storage successfully.
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Storage"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A storage with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.
+    delete:
+      summary: Delete storage by ID
+      tags: 
+        -  Storages
+      operationId: deleteStorage
+      parameters: 
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the storage to delete.
+      responses: 
+        '204':
+          description: Storage was deleted
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A storage with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.
+          
+  /nearbyStorages/{qrCode}:
+    get:
+      summary: Get nearby storages by QR code
+      tags: 
+        - Storages
+      operationId: getNearbyStoragesByQRcode
+      parameters: 
+        - in: path
+          name: qrCode
+          schema:
+            type: string
+          required: true
+          description: QR code of the article find nearby storages for.
+      responses:
+        '200':
+          description: An array of nearby storages
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#/components/schemas/NearbyStorageForArticle'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Not found.
+        '5XX':
+          description: Unexpected error.
+  
+  /compartments:
+    post: 
+      summary: Create compartment
+      operationId: createCompartment
+      tags: 
+        -  Compartments
+      requestBody: 
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties: 
+                storageId:
+                  type: string
+                placement:
+                  type: string
+                qrCode: 
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Compartment"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+                   
+  /compartments/{qrCode}:
+    get:
+      summary: Get compartment by QRcode
+      tags: 
+        - Compartments
+      operationId: getCompartmentByQRcode
+      parameters: 
+        - in: path
+          name: qrCode
+          schema:
+            type: string
+          required: true
+          description: QR code of the compartment to get
+      responses:
+        '200':
+          description: A JSON object with compartment information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compartment'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A compartment with the specified QR code was not found.
+        '5XX':
+          description: Unexpected error.
+    put:
+      summary: Edit compartment by QRcode
+      tags: 
+        - Compartments
+      operationId: editCompartmentByQRcode
+      parameters: 
+        - in: path
+          name: qrCode
+          schema:
+            type: string
+          required: true
+          description: QR code of the compartment to edit
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/Compartment"
+      responses:
+        '200':
+          description: A JSON compartment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compartment'
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A compartment with the specified QR code was not found.
+        '5XX':
+          description: Unexpected error.
+    delete:
+      summary: Delete compartment
+      tags: 
+        -  Compartments
+      operationId: deleteCompartment
+      parameters: 
+        - in: path
+          name: qrCode
+          schema:
+            type: string
+          required: true
+          description: QR code of the compartment to delete
+      responses: 
+        '204':
+          description: Compartment was deleted
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: A user with the specified ID was not found.
+        '5XX':
+          description: Unexpected error.
+  
+  /connectArticleToCompartment/{qrCode}:
+    put: 
+      summary: Connect article to compartment by QR code
+      operationId: connectArticleCompartment
+      tags: 
+        -  Compartments
+      parameters: 
+        - in: path
+          name: qrCode
+          schema:
+            type: string
+          required: true
+          description: QR code of compartment to connect article to
+      requestBody: 
+        content: 
+          application/json:
+            schema: 
+              type: object
+              properties: 
+                lioNr:
+                  type: string
+                quantity:
+                  type: integer
+                unit:
+                  type: string
+      responses: 
+        '200':    # status code
+          description: Success
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Compartment"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: An article with the specified LIO nr was not found.
+        '5XX':
+          description: Unexpected error.
+          
+  /transactions:
+    get:
+      summary: Get transactions
+      operationId: getTransactions
+      tags: 
+        -  Transactions
+      responses: 
+        '200':
+          description: Success
+          content: 
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: "#/components/schemas/Transaction"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+    post:
+      summary: Create transaction
+      operationId: createTransaction
+      tags: 
+        -  Transactions
+      requestBody: 
+        content: 
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/Transaction"
+      responses: 
+        '200':
+          description: Success
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Transaction"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '5XX':
+          description: Unexpected error.
+  
+  /moveArticle:
+    post:
+      summary: Move article between compartments
+      operationId: moveArticle
+      tags:
+      - Compartments
+      requestBody: 
+        required: true
+        content: 
+          application/json:
+            schema: 
+              $ref: "#/components/schemas/MoveTransaction"
+      responses: 
+        '200':
+          description: Success
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/MoveTransaction"
+        '400':
+          description: Bad request.
+        '401':
+          description: Authorization information is missing or invalid.
+        '404':
+          description: Compartments with specified QR codes were not found.
+        '5XX':
+          description: Unexpected error.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+
+    Barcode:
+      type: object
+      properties:
+        barcodeId:
+          type: string
+    
+    Credentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    NFC: 
+      type: object
+      properties:
+        nfcId:
+          type: string
+
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+          readOnly: true
+        barcodeId:
+          type: string
+          writeOnly: true
+        nfcId:
+          type: string
+          writeOnly: true
+        username:
+          type: string
+        password:
+          type: string
+          example: "******"
+          writeOnly: true
+        costCenter: 
+          type: string
+          example: Cost Center
+        role: 
+          type: string
+
+    Article:
+      type: object
+      properties:  
+        compartments:
+          readOnly: true
+          type: array
+          items: 
+            $ref: "#/components/schemas/CompartmentInArticle"
+        units: 
+          type: array
+          items:
+            type: string
+            example: unit
+        price:
+          type: number
+          format: float
+          example: 9.95
+        supplier:
+          type: string
+        supplierArticleNr:
+          type: string
+        name:
+          type: string
+        alternativeNames:
+          type: array
+          items:
+            type: string
+            example: name
+        lioNr:
+          type: string
+        alternativeProducts: 
+          type: array
+          items:
+            type: string
+            example: LIO-nr
+        Z41:
+          type: boolean
+    
+    ArticleInCompartment:
+      type: object
+      readOnly: true
+      properties:  
+        units: 
+          type: array
+          items:
+            type: string
+            example: unit
+        price:
+          type: number
+          format: float
+          example: 9.95
+        supplier:
+          type: string
+        supplierArticleNr:
+          type: string
+        name:
+          type: string
+        alternativeNames:
+          type: array
+          items:
+            type: string
+            example: name
+        lioNr:
+          type: string
+        alternativeProducts: 
+          type: array
+          items:
+            type: string
+            example: LIO-nr
+        Z41:
+          type: boolean
+
+    Transaction: 
+      type: object # API Token --> User
+      properties:
+        id: 
+          type: string
+          readOnly: true
+        userId:
+          type: string
+          readOnly: true
+        timeStamp:
+          type: string
+          readOnly: true
+        qrCode: # --> Article, Storage
+          type: string
+          writeOnly: true
+        lioNr: 
+          type: string
+          readOnly: true
+        storage: 
+          $ref: "#/components/schemas/Storage"
+          readOnly: true
+        quantity: 
+          type: integer
+        unit: 
+          type: string
+        operation:
+          type: string
+          enum:
+            - takeout
+            - return
+            - replenish
+            - adjust
+
+    MoveTransaction:
+      type: object
+      properties: 
+        id: 
+          type: string
+          readOnly: true
+        userId:
+          type: string
+          readOnly: true
+        timeStamp:
+          type: string
+          readOnly: true
+        fromCompartmentQrCode:
+          type: string
+          example: QR code
+          writeOnly: true
+        toCompartmentQrCode:
+          type: string
+          example: QR code
+          writeOnly: true
+        fromStorage:
+          $ref: "#/components/schemas/Storage"
+          readOnly: true
+        toStorage:
+          $ref: "#/components/schemas/Storage"
+          readOnly: true
+        lioNr:
+          type: string
+          readOnly: true
+        unit:
+          type: string
+        quantity:
+          type: integer
+    
+    Storage:
+      type: object
+      properties:
+        id: 
+          type: string
+          readOnly: true
+        location:
+          type: string
+        compartments:
+          type: array
+          items: 
+            $ref: "#/components/schemas/Compartment"
+          readOnly: true
+
+    NearbyStorageForArticle:
+      type: object
+      properties:
+        id: 
+          type: string
+        location:
+          type: string
+          example: "?"
+        quantity:
+          type: integer
+        compartment:
+          $ref: '#/components/schemas/Compartment'
+
+    Compartment:
+      type: object
+      properties:
+        placement: 
+          type: string
+        storageId:
+          type: string
+        qrCode: 
+          type: string
+        quantity: 
+          type: integer
+        article:
+          $ref: "#/components/schemas/ArticleInCompartment"
+          readOnly: true
+    
+    CompartmentInArticle:
+      type: object
+      properties:
+        placement: 
+          type: string
+        storageId:
+          type: string
+        qrCode: 
+          type: string
+        quantity: 
+          type: integer
