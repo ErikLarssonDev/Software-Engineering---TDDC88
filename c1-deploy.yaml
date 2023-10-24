@@ -1,0 +1,85 @@
+# yamllint disable rule:line-length
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: c1-deployment
+  labels:
+    app: c1-project
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: c1-project
+  template:
+    metadata:
+      labels:
+        app: c1-project
+    spec:
+      imagePullSecrets:
+        - name: liu-gitlab-regcred
+      containers:
+        -
+          name: c1-container
+          image: gitlab.liu.se:5000/tddc88-2022/c1/company-1-project/kube-c1:latest
+          ports:
+            - name: web
+              containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 80Mi
+            requests:
+              cpu: 10m
+              memory: 42Mi
+          readinessProbe:
+            httpGet:
+              port: web
+              path: /index.html
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              port: web
+              path: /index.html
+            initialDelaySeconds: 20
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: c1-project
+  name: c1-project
+spec:
+  type: ClusterIP
+  ports:
+    - name: web
+      protocol: TCP
+      targetPort: 80
+      port: 80
+  selector:
+    app: c1-project
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: c1-main-ingress
+spec:
+  ingressClassName: nginx-public
+  rules:
+    - host: tddc88-c1.kubernetes-public.it.liu.se
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: c1-project
+                port:
+                  number: 80

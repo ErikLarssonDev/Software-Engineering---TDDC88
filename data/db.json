@@ -1,0 +1,743 @@
+{
+  "articlesQR": [
+    {
+      "id": 1,
+      "placement": "Hylla 1 > Fack 5",
+      "storageId": "A",
+      "qrCode": "1",
+      "quantity": 10,
+      "lioNr": "12345",
+      "name": "Paracetamol",
+      "normalOrderQuantity": 9,
+      "orderQuantityLevel": 5
+      
+    },
+    {
+      "id": 2,
+      "placement": "Hylla 1 > Fack 6",
+      "storageId": "A",
+      "qrCode": "2",
+      "quantity": 10,
+      "lioNr": "23456",
+      "name": "Ibuprofen",
+      "normalOrderQuantity": 4,
+      "orderQuantityLevel": 3
+    },
+    {
+      "id": 3,
+      "placement": "Hylla 1 > Fack 7",
+      "storageId": "A",
+      "qrCode": "3",
+      "quantity": 5,
+      "lioNr": "33333",
+      "name": "Naproxen",
+      "normalOrderQuantity": 0,
+      "orderQuantityLevel": 0
+    }
+  ],
+  "articles": [
+    {
+      "id": 4,
+      "placement": "Hylla 1 > Fack 8",
+      "storageId": "A",
+      "qrCode": "4",
+      "quantity": 10,
+      "lioNr": "11111",
+      "name": "Voltaren"
+    },
+    {
+      "id": 5,
+      "placement": "Hylla 1 > Fack 8",
+      "storageId": "A",
+      "qrCode": "5",
+      "quantity": 20,
+      "lioNr": "22222",
+      "name": "Alvedon"
+    },
+    {
+      "id": 5,
+      "placement": "Hylla 1 > Fack 8",
+      "storageId": "A",
+      "qrCode": "7",
+      "quantity": "",
+      "lioNr": "",
+      "name": ""
+    }
+  ],
+  "articlesLio": [
+    {
+      "id": "12345",
+      "placement": "Hylla 1 > Fack 5",
+      "storageId": "A",
+      "qrCode": "1",
+      "quantity": 12,
+      "lioNr": "12345",
+      "name": "Paracetamol",
+      "levDate": "20/11",
+      "levBalance": 23,
+      "normalOrderQuantity": 5,
+      "orderQuantityLevel": 4
+    },
+    {
+      "id": "23456",
+      "placement": "Hylla 1 > Fack 6",
+      "storageId": "A",
+      "qrCode": "2",
+      "quantity": 10,
+      "lioNr": "23456",
+      "name": "Ibuprofen",
+      "levDate": "3/11",
+      "levBalance": 1,
+      "normalOrderQuantity": 5,
+      "orderQuantityLevel": 4
+    },
+    {
+      "id": "33333",
+      "placement": "Hylla 1 > Fack 7",
+      "storageId": "A",
+      "qrCode": "3",
+      "quantity": 5,
+      "lioNr": "33333",
+      "name": "Naproxen",
+      "levDate": "20/11",
+      "levBalance": 23,
+      "normalOrderQuantity": 5,
+      "orderQuantityLevel": 4
+    }
+  ],
+  "articlesName": [
+    {
+      "id": "Paracetamol",
+      "placement": "Hylla 1 > Fack 5",
+      "storageId": "A",
+      "qrCode": "1",
+      "quantity": 12,
+      "lioNr": "12345",
+      "name": "Paracetamol",
+      "levDate": "20/11",
+      "levBalance": 23,
+      "normalOrderQuantity": 5,
+      "orderQuantityLevel": 4
+    },
+    {
+      "id": "Ibuprofen",
+      "placement": "Hylla 1 > Fack 6",
+      "storageId": "A",
+      "qrCode": "2",
+      "quantity": 10,
+      "lioNr": "23456",
+      "name": "Ibuprofen",
+      "levDate": "3/11",
+      "levBalance": 1,
+      "normalOrderQuantity": 5,
+      "orderQuantityLevel": 4
+    },
+    {
+      "id": "Naproxen",
+      "placement": "Hylla 1 > Fack 7",
+      "storageId": "A",
+      "qrCode": "3",
+      "quantity": 5,
+      "lioNr": "33333",
+      "name": "Naproxen",
+      "levDate": "20/11",
+      "levBalance": 23,
+      "normalOrderQuantity": 5,
+      "orderQuantityLevel": 4
+    }
+  ],
+  "orderId": [
+    {
+      "id": "11112222",
+      "storageId": "A",
+      "ordDate": "1/9-22",
+      "levDate": "20/11-22"
+    },
+    {
+      "id": "22221111",
+      "storageId": "A",
+      "ordDate": "1/9-22",
+      "levDate": "4/9-22"
+    }
+  ],
+  "articlesStorage": [
+    {
+      "id": 1,
+      "placement": "Hylla 1 > Fack 5",
+      "storageId": "A",
+      "qrCode": "1",
+      "quantity": 35,
+      "lioNr": "12345",
+      "name": "Paracetamol"
+    },
+    {
+      "id": 2,
+      "placement": "Hylla 1 > Fack 6",
+      "storageId": "A",
+      "qrCode": "2",
+      "quantity": 10,
+      "lioNr": "23456",
+      "name": "Ibuprofen"
+    },
+    {
+      "id": 3,
+      "placement": "Hylla 1 > Fack 7",
+      "storageId": "A",
+      "qrCode": "3",
+      "quantity": 5,
+      "lioNr": "33333",
+      "name": "Naproxen"
+    }
+  ],
+  "orders": [
+    {
+      "id": "11112222",
+      "storageId": "A",
+      "orderDate": "2019-08-24T14:15:22Z",
+      "estimatedDeliveryDate": "2019-08-24T14:15:22Z",
+      "deliveryDate": "2019-08-24T14:15:22Z",
+      "state": "ordered",
+      "articles": [
+        {
+          "articleInfo": {
+            "compartments": [
+              {
+                "placement": null,
+                "storageId": null,
+                "qrCode": null,
+                "quantity": 5,
+                "normalOrderQuantity": 0,
+                "orderQuantityLevel": 0
+              }
+            ],
+            "units": {
+              "input": "20m",
+              "output": "cm",
+              "outputPerInput": 2000
+            },
+            "price": 9.95,
+            "suppliers": [
+              {
+                "supplierName": "string",
+                "supplierArticleNr": "string"
+              }
+            ],
+            "name": "Alvedon",
+            "alternativeNames": [
+              "name"
+            ],
+            "lioNr": "22222",
+            "alternativeProducts": [
+              "LIO-nr"
+            ],
+            "Z41": true
+          },
+          "orderedQuantity": 0,
+          "deliveredQuantity": 0,
+          "unit": "input"
+        },
+        {
+          "articleInfo": {
+            "compartments": [
+              {
+                "placement": "2",
+                "storageId": "1",
+                "qrCode": "string",
+                "quantity": 20,
+                "normalOrderQuantity": 0,
+                "orderQuantityLevel": 0
+              }
+            ],
+            "units": {
+              "input": "20m",
+              "output": "cm",
+              "outputPerInput": 2000
+            },
+            "price": 9.95,
+            "suppliers": [
+              {
+                "supplierName": "string",
+                "supplierArticleNr": "string"
+              }
+            ],
+            "name": "Paracetamol",
+            "alternativeNames": [
+              "name"
+            ],
+            "lioNr": "12345",
+            "alternativeProducts": [
+              "LIO-nr"
+            ],
+            "Z41": true
+          },
+          "orderedQuantity": 0,
+          "deliveredQuantity": 0,
+          "unit": "input"
+        },
+        {
+          "articleInfo": {
+            "compartments": [
+              {
+                "placement": "2",
+                "storageId": "1",
+                "qrCode": "string",
+                "quantity": 7,
+                "normalOrderQuantity": 0,
+                "orderQuantityLevel": 0
+              }
+            ],
+            "units": {
+              "input": "20m",
+              "output": "cm",
+              "outputPerInput": 2000
+            },
+            "price": 9.95,
+            "suppliers": [
+              {
+                "supplierName": "string",
+                "supplierArticleNr": "string"
+              }
+            ],
+            "name": "Handskar",
+            "alternativeNames": [
+              "name"
+            ],
+            "lioNr": "112233",
+            "alternativeProducts": [
+              "LIO-nr"
+            ],
+            "Z41": true
+          },
+          "orderedQuantity": 0,
+          "deliveredQuantity": 0,
+          "unit": "input"
+        }
+      ]
+    },
+    {
+      "id": "22221111",
+      "storageId": "A",
+      "orderDate": "2019-08-24T14:15:22Z",
+      "estimatedDeliveryDate": "2019-08-24T14:15:22Z",
+      "deliveryDate": "2019-08-24T14:15:22Z",
+      "state": "ordered",
+      "articles": [
+        {
+          "articleInfo": {
+            "compartments": [
+              {
+                "placement": null,
+                "storageId": null,
+                "qrCode": null,
+                "quantity": 5,
+                "normalOrderQuantity": 0,
+                "orderQuantityLevel": 0
+              }
+            ],
+            "units": {
+              "input": "20m",
+              "output": "cm",
+              "outputPerInput": 2000
+            },
+            "price": 9.95,
+            "suppliers": [
+              {
+                "supplierName": "string",
+                "supplierArticleNr": "string"
+              }
+            ],
+            "name": "Alvedon",
+            "alternativeNames": [
+              "name"
+            ],
+            "lioNr": "22222",
+            "alternativeProducts": [
+              "LIO-nr"
+            ],
+            "Z41": true
+          },
+          "orderedQuantity": 0,
+          "deliveredQuantity": 0,
+          "unit": "input"
+        },
+        {
+          "articleInfo": {
+            "compartments": [
+              {
+                "placement": "2",
+                "storageId": "1",
+                "qrCode": "string",
+                "quantity": 20,
+                "normalOrderQuantity": 0,
+                "orderQuantityLevel": 0
+              }
+            ],
+            "units": {
+              "input": "20m",
+              "output": "cm",
+              "outputPerInput": 2000
+            },
+            "price": 9.95,
+            "suppliers": [
+              {
+                "supplierName": "string",
+                "supplierArticleNr": "string"
+              }
+            ],
+            "name": "Paracetamol",
+            "alternativeNames": [
+              "name"
+            ],
+            "lioNr": "12345",
+            "alternativeProducts": [
+              "LIO-nr"
+            ],
+            "Z41": true
+          },
+          "orderedQuantity": 0,
+          "deliveredQuantity": 0,
+          "unit": "input"
+        },
+        {
+          "articleInfo": {
+            "compartments": [
+              {
+                "placement": "2",
+                "storageId": "1",
+                "qrCode": "string",
+                "quantity": 7,
+                "normalOrderQuantity": 0,
+                "orderQuantityLevel": 0
+              }
+            ],
+            "units": {
+              "input": "20m",
+              "output": "cm",
+              "outputPerInput": 2000
+            },
+            "price": 9.95,
+            "suppliers": [
+              {
+                "supplierName": "string",
+                "supplierArticleNr": "string"
+              }
+            ],
+            "name": "Handskar",
+            "alternativeNames": [
+              "name"
+            ],
+            "lioNr": "112233",
+            "alternativeProducts": [
+              "LIO-nr"
+            ],
+            "Z41": true
+          },
+          "orderedQuantity": 0,
+          "deliveredQuantity": 0,
+          "unit": "input"
+        }
+      ]
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": "33333",
+        "placement": "Hylla 1 > Fack 7",
+        "storageId": "A",
+        "qrCode": "3",
+        "quantity": 5,
+        "lioNr": "33333",
+        "name": "Naproxen",
+        "levDate": "20/11",
+        "levBalance": 23,
+        "normalOrderQuantity": 5,
+        "orderQuantityLevel": 4,
+        "amount": 5
+      },
+      "id": "mr9zKVK"
+    }
+  ],
+  "storages": [
+    {
+      "id": "1",
+      "location": {
+        "building": "string",
+        "floor": "string"
+      },
+      "compartments": {
+        "placement": "Hylla 2 > Plats 3",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 35,
+        "normalOrderQuantity": 0,
+        "orderQuantityLevel": 0,
+        "article": {
+          "units": {
+            "input": "20m",
+            "output": "cm",
+            "outputPerInput": 2000
+          },
+          "price": 9.95,
+          "suppliers": [
+            {
+              "supplierName": "string",
+              "supplierArticleNr": "string"
+            }
+          ],
+          "name": "Paracetamol",
+          "alternativeNames": [
+              "name"
+          ],
+          "lioNr": "12345",
+          "alternativeProducts": [
+              "LIO-nr"
+          ],
+          "Z41": true
+        }
+      }
+    },
+    {
+      "id": "2",
+      "location": {
+        "building": "string",
+        "floor": "string"
+      },
+      "compartments": {
+        "placement": "Hylla 2 > Plats 4",
+        "storageId": "A",
+        "qrCode": "2",
+        "quantity": 0,
+        "normalOrderQuantity": 0,
+        "orderQuantityLevel": 0,
+        "article": {
+          "units": {
+            "input": "20m",
+            "output": "cm",
+            "outputPerInput": 2000
+          },
+          "price": 9.95,
+          "suppliers": [
+            {
+              "supplierName": "string",
+              "supplierArticleNr": "string"
+            }
+          ],
+          "name": "",
+          "alternativeNames": [
+            "name"
+          ],
+          "lioNr": "",
+          "alternativeProducts": [
+            "LIO-nr"
+          ],
+          "Z41": true
+        }
+      }
+    },
+    {
+      "id": "3",
+      "location": {
+        "building": "string",
+        "floor": "string"
+      },
+      "compartments": {
+        "placement": "Hylla 1 > Plats 5",
+        "storageId": "B",
+        "qrCode": "3",
+        "quantity": 90,
+        "normalOrderQuantity": 0,
+        "orderQuantityLevel": 0,
+        "article": {
+          "units": {
+            "input": "20m",
+            "output": "cm",
+            "outputPerInput": 2000
+          },
+          "price": 9.95,
+          "suppliers": [
+            {
+              "supplierName": "string",
+              "supplierArticleNr": "string"
+            }
+          ],
+          "name": "Paracetamol",
+          "alternativeNames": [
+            "name"
+          ],
+          "lioNr": "12345",
+          "alternativeProducts": [
+            "LIO-nr"
+          ],
+          "Z41": true
+        }
+      }
+    }
+  ],
+  "autoOrders": [
+    {
+      "storageId": 1,
+      "article": {
+        "id": 1,
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 35,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "amount": 4
+      },
+      "id": 1
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": 1,
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 35,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "amount": 10
+      },
+      "id": 2
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": 2,
+        "placement": "Hylla 1 > Fack 6",
+        "storageId": "A",
+        "qrCode": "2",
+        "quantity": 10,
+        "lioNr": "23456",
+        "name": "Ibuprofen",
+        "amount": 5
+      },
+      "id": 3
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": 1,
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 35,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "amount": 3,
+        "remaining": null
+      },
+      "id": 4
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": "12345",
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 12,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "levDate": "20/11",
+        "levBalance": 23,
+        "amount": 3,
+        "remaining": null
+      },
+      "id": 5
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": "12345",
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 12,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "levDate": "20/11",
+        "levBalance": 23,
+        "amount": 4
+      },
+      "id": 6
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": "12345",
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 12,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "levDate": "20/11",
+        "levBalance": 23,
+        "amount": 2
+      },
+      "id": 7
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": 1,
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 50,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "amount": 4
+      },
+      "id": 8
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": 1,
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 50,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "amount": 18
+      },
+      "id": 9
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": 1,
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 50,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "amount": 7
+      },
+      "id": 10
+    },
+    {
+      "storageId": 2,
+      "article": {
+        "id": "12345",
+        "placement": "Hylla 1 > Fack 5",
+        "storageId": "A",
+        "qrCode": "1",
+        "quantity": 12,
+        "lioNr": "12345",
+        "name": "Paracetamol",
+        "levDate": "20/11",
+        "levBalance": 23,
+        "amount": 13,
+        "remaining": null
+      },
+      "id": 11
+    }
+  ]
+}

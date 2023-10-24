@@ -1,0 +1,27 @@
+[
+    {
+        "LIO": "928328",
+        "name": "Ibuprofen",
+        "remaining": 5,
+        "delivery_date": "20/9",
+        "storage": "A",
+        "shelf": "1",
+        "deposit": "18"
+    },
+    {
+        "LIO": "2",
+        "name": "Paracetamol"
+    },
+    {
+        "LIO": "3",
+        "name": "Naproxen"
+    },
+    {
+        "LIO": "4",
+        "name": "Voltaren"
+    },
+    {
+        "LIO": "5",
+        "name": "Celecoxib"
+    }
+]

@@ -1,0 +1,11 @@
+.outline {
+    width: 100vw;
+    height: 35vh;
+    position: absolute;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    opacity:0.55;
+    margin-top: 0px;
+    padding-top:0px;
+}
